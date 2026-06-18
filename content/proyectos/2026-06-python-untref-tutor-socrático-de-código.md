@@ -2,6 +2,7 @@
 title: Python UNTREF - Tutor "Socrático" de Código
 date: 2026-06-18T19:31:00.000-03:00
 author: Equipo de Tecnología Educativa - Centro Estudiantes UNTREF
+thumbnail: /images/uploads/python_untref_simulador_rrccii.jpg
 metacognicion: El desarrollo de este tutor socrático responde a la necesidad de
   prevenir la delegación cognitiva en materias de programación. Al diseñar una
   herramienta que se abstiene deliberadamente de entregar la respuesta directa,
