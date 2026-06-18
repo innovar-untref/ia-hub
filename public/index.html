@@ -109,7 +109,7 @@
             });
             
             // Si el CMS no mandó imagen, se usa el logo de la UNTREF por defecto
-            const imagenUrl = datos.thumbnail ? datos.thumbnail : 'https://untref.edu.ar/sitio/img/logo_untref.png';
+            const imagenUrl = datos.thumbnail ? datos.thumbnail : 'https://www.innovaruntref.com.ar/wp-content/uploads/2018/04/untref-logo-usar-este_2_orig.png';
             
             // Limitar la metacognición a 150 caracteres para la vista previa
             let resumen = datos.metacognicion ? datos.metacognicion : 'Sin reflexión metacognitiva asignada.';
@@ -119,7 +119,7 @@
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${imagenUrl}" alt="Portada de ${datos.title}" class="card-img" onerror="this.src='https://untref.edu.ar/sitio/img/logo_untref.png'">
+                <img src="${imagenUrl}" alt="Portada de ${datos.title}" class="card-img" onerror="this.src='https://www.innovaruntref.com.ar/wp-content/uploads/2018/04/untref-logo-usar-este_2_orig.png'">
                 <div class="card-content">
                     <h3 class="card-title">${datos.title}</h3>
                     <div class="card-meta">
