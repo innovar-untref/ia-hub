@@ -65,26 +65,22 @@
             const loading = document.getElementById('loading');
             
             try {
-                // Consultar la API de GitHub para listar los archivos de la carpeta
                 const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}`);
                 if (!response.ok) throw new Error('No se pudo acceder al repositorio.');
                 
                 const archivos = await response.json();
-                grid.innerHTML = ''; // Limpiar el estado de carga
+                grid.innerHTML = ''; 
                 
-                // Recorrer cada archivo encontrado
                 for (const archivo of archivos) {
                     if (archivo.name.endsWith('.md')) {
-                        // Descargar el contenido crudo del archivo Markdown
                         const mdResponse = await fetch(archivo.download_url);
                         const mdContent = await mdResponse.text();
                         
-                        // Expresión regular para separar los Metadatos (YAML) del Cuerpo del texto
                         const yamlMatch = mdContent.match(/^---\n([\s\S]*?)\n---/);
                         if (yamlMatch) {
-                            // Convertir el texto YAML en un objeto de JavaScript
                             const datosProyecto = jsyaml.load(yamlMatch[1]);
-                            renderizarTarjeta(datosProyecto, grid);
+                            // ¡ACÁ ESTÁ EL CAMBIO!: Le pasamos archivo.name como tercer argumento
+                            renderizarTarjeta(datosProyecto, grid, archivo.name);
                         }
                     }
                 }
@@ -102,24 +98,21 @@
         }
 
         // 3. Función constructora de la interfaz visual
-        function renderizarTarjeta(datos, contenedor) {
-            // Dar formato a la fecha (DD/MM/AAAA)
+        // ¡ACÁ ESTÁ EL OTRO CAMBIO!: Agregamos 'nombreArchivo' en la definición de la función
+        function renderizarTarjeta(datos, contenedor, nombreArchivo) {
             const fechaFormateada = new Date(datos.date).toLocaleDateString('es-AR', {
                 year: 'numeric', month: 'long', day: 'numeric'
             });
             
-            // Si el CMS no mandó imagen, se usa el logo de la UNTREF por defecto
-            const imagenUrl = datos.thumbnail ? datos.thumbnail : 'https://www.innovaruntref.com.ar/wp-content/uploads/2018/04/untref-logo-usar-este_2_orig.png';
+            const imagenUrl = datos.thumbnail ? datos.thumbnail : 'https://untref.edu.ar/sitio/img/logo_untref.png';
             
-            // Limitar la metacognición a 150 caracteres para la vista previa
             let resumen = datos.metacognicion ? datos.metacognicion : 'Sin reflexión metacognitiva asignada.';
             if (resumen.length > 150) resumen = resumen.substring(0, 150) + '...';
 
-            // Crear la estructura HTML de la tarjeta
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${imagenUrl}" alt="Portada de ${datos.title}" class="card-img" onerror="this.src='https://www.innovaruntref.com.ar/wp-content/uploads/2018/04/untref-logo-usar-este_2_orig.png'">
+                <img src="${imagenUrl}" alt="Portada de ${datos.title}" class="card-img" onerror="this.src='https://untref.edu.ar/sitio/img/logo_untref.png'">
                 <div class="card-content">
                     <h3 class="card-title">${datos.title}</h3>
                     <div class="card-meta">
@@ -128,14 +121,13 @@
                     <div class="card-desc">
                         "${resumen}"
                     </div>
-                    <a href="/proyecto.html?file=${archivo.name}" class="btn-leer">Ver Proyecto</a>
+                    <a href="/proyecto.html?file=${nombreArchivo}" class="btn-leer">Ver Proyecto</a>
                 </div>
             `;
             
             contenedor.appendChild(card);
         }
 
-        // Iniciar la secuencia al cargar la página
         cargarProyectos();
     </script>
 </body>
