@@ -2,7 +2,7 @@
 title: "Pronto Prompt: Generador Institucional de Prompts"
 date: 2026-06-18T17:36:00.000-03:00
 author: Equipo de Tecnología Educativa
-thumbnail: https://www.innovaruntref.com.ar/wp-content/uploads/2024/03/Curso-Python-2.jpg
+thumbnail: /images/uploads/pprompt.jpg
 metacognicion: El desarrollo de esta herramienta representa un paso concreto
   hacia la Educación 4.0 en la universidad. Al integrar metodologías
   estructuradas como el método ROCKET, el objetivo no es simplemente automatizar
