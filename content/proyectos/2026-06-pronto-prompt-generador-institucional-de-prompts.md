@@ -25,3 +25,5 @@ Lógica de Prompts: Incorpora estructuras avanzadas de ingeniería de prompts, p
 
 Impacto y Proyección
 Al facilitar la curva de aprendizaje en el uso de la Inteligencia Artificial, Pronto Prompt se posiciona como un asistente clave para docentes y equipos de investigación, permitiéndoles enfocar su tiempo en el análisis crítico y la innovación pedagógica, delegando la estructura técnica del prompting a la aplicación.
+
+<https://pronto-prompt-innovar.streamlit.app/>
