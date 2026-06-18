@@ -17,3 +17,7 @@ El proyecto Python UNTREF, que ya se encuentra en pleno funcionamiento, incorpor
 En la práctica, el sistema opera generando una estructura de instrucciones precisas para que la plataforma asuma, de manera estricta, un rol de guía docente. Si un estudiante se encuentra con un error de sintaxis o un fallo lógico en su código, el tutor no le devuelve el fragmento corregido ni la resolución final del problema. Por el contrario, le proporciona pistas situadas que lo invitan a pensar, analizar y resolver el obstáculo por su propia cuenta.
 
 Esta dinámica resulta fundamental para la construcción del conocimiento en disciplinas técnicas. Al integrarse en el flujo de trabajo habitual de las cursadas, el tutor socrático garantiza que los estudiantes se apropien de los conceptos de programación, consolidando una formación sólida basada en la comprensión profunda y la resolución autónoma de problemas.
+
+```
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WEgH044tkJ4?si=Z3_mEposEL6L0v_O" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+```
