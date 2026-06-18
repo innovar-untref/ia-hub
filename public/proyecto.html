@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto - IA HUB</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    
+    <style>
+        /* Diseño Institucional UNTREF */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; color: #333; line-height: 1.6; }
+        header { background-color: #003366; color: white; padding: 1.5rem; text-align: center; border-bottom: 5px solid #0099CC; }
+        header h1 { margin: 0; font-size: 2rem; }
+        
+        .container { max-width: 800px; margin: 40px auto; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .volver { display: inline-block; margin-bottom: 20px; color: #0099CC; text-decoration: none; font-weight: bold; }
+        .volver:hover { text-decoration: underline; }
+        
+        #titulo-proyecto { color: #003366; font-size: 2.2rem; margin-top: 0; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        #meta-proyecto { color: #666; font-size: 0.9rem; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Estilos para el texto convertido de Markdown */
+        #contenido-proyecto h2 { color: #0099CC; margin-top: 30px; }
+        #contenido-proyecto ul { padding-left: 20px; }
+        #contenido-proyecto img { max-width: 100%; height: auto; border-radius: 5px; margin: 20px 0; }
+        
+        #loading { text-align: center; font-size: 1.2rem; color: #666; padding: 40px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Innovar UNTREF | IA HUB</h1>
+    </header>
+    
+    <div class="container">
+        <a href="/" class="volver">← Volver a la portada</a>
+        
+        <div id="loading">Cargando artículo...</div>
+        
+        <div id="articulo" style="display: none;">
+            <h1 id="titulo-proyecto"></h1>
+            <div id="meta-proyecto"></div>
+            <div id="contenido-proyecto"></div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Obtener el nombre del archivo desde la URL (ej: ?file=pronto-prompt.md)
+        const urlParams = new URLSearchParams(window.location.search);
+        const fileName = urlParams.get('file');
+        
+        // 2. Datos de tu repositorio
+        const user = 'innovar-untref';
+        const repo = 'ia-hub';
+        const folder = 'content/proyectos';
+
+        async function cargarArticulo() {
+            if (!fileName) {
+                document.getElementById('loading').innerText = 'Error: No se especificó ningún proyecto.';
+                return;
+            }
+
+            try {
+                // 3. Descargar el archivo específico desde GitHub
+                const response = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${folder}/${fileName}`);
+                if (!response.ok) throw new Error('No se pudo encontrar el archivo en el repositorio.');
+                
+                const mdContent = await response.text();
+                
+                // 4. Separar los Metadatos (YAML) del Cuerpo del texto (Markdown)
+                const yamlMatch = mdContent.match(/^---\n([\s\S]*?)\n---/);
+                let datos = {};
+                let cuerpoMarkdown = mdContent;
+
+                if (yamlMatch) {
+                    datos = jsyaml.load(yamlMatch[1]);
+                    // Quitar la parte de los metadatos para quedarnos solo con el texto del artículo
+                    cuerpoMarkdown = mdContent.replace(/^---\n[\s\S]*?\n---/, '');
+                }
+
+                // Dar formato a la fecha
+                const fechaFormateada = datos.date ? new Date(datos.date).toLocaleDateString('es-AR', {
+                    year: 'numeric', month: 'long', day: 'numeric'
+                }) : '';
+
+                // 5. Inyectar los datos en el HTML
+                document.getElementById('titulo-proyecto').innerText = datos.title || 'Proyecto sin título';
+                document.getElementById('meta-proyecto').innerHTML = `<strong>${datos.author || 'Autor desconocido'}</strong> | ${fechaFormateada}`;
+                
+                // Convertir el cuerpo de Markdown a HTML usando la librería marked.js
+                document.getElementById('contenido-proyecto').innerHTML = marked.parse(cuerpoMarkdown);
+
+                // Ocultar mensaje de carga y mostrar el artículo completo
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('articulo').style.display = 'block';
+
+            } catch (error) {
+                document.getElementById('loading').innerText = 'Error al cargar el proyecto: ' + error.message;
+            }
+        }
+
+        // Ejecutar la función apenas carga la página
+        cargarArticulo();
+    </script>
+</body>
+</html>
