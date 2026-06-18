@@ -18,3 +18,5 @@ El Sistema de Inscripción a Cursos (SICU), ya en pleno funcionamiento, da un pa
 El valor pedagógico de este desarrollo reside en su capacidad para registrar el proceso formativo en tiempo real. A través de la recopilación y el análisis sistemático de las consultas e interacciones que los estudiantes redactan en esta etapa temprana, el equipo docente obtiene un mapa detallado de sus inquietudes, niveles de conocimiento previo y posibles obstáculos de comprensión. Esta información resulta fundamental: permite identificar cómo están predispuestos los estudiantes y qué dudas traen consigo semanas antes de enfrentarse a la instancia de evaluación.
 
 De esta forma, la plataforma administrativa se transforma en el primer eslabón proactivo del proceso de enseñanza. Brinda datos precisos para optimizar la planificación de las clases, permitiendo diseñar materiales y prácticas desde una perspectiva de pensamiento situado, respondiendo de manera directa y concreta a las necesidades reales de nuestra comunidad universitaria.
+
+<https://sicu-untref.vercel.app/>
