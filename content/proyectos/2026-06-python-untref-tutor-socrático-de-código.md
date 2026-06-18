@@ -18,4 +18,4 @@ En la práctica, el sistema opera generando una estructura de instrucciones prec
 
 Esta dinámica resulta fundamental para la construcción del conocimiento en disciplinas técnicas. Al integrarse en el flujo de trabajo habitual de las cursadas, el tutor socrático garantiza que los estudiantes se apropien de los conceptos de programación, consolidando una formación sólida basada en la comprensión profunda y la resolución autónoma de problemas.
 
-[youtube](https://www.youtube.com/watch?v=WEgH044tkJ4)
+[youtube](https://youtu.be/WEgH044tkJ4)
