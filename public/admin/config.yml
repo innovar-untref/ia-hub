@@ -3,6 +3,7 @@ backend:
   name: github
   repo: innovar-untref/ia-hub
   branch: main
+  base_url: https://puente-ia-hub.vercel.app
   # IMPORTANTE: Descomentá la línea de abajo y poné la URL de tu microservicio 
   # cuando hagas el Paso 4 (el puente OAuth en Vercel). Si no lo hacés, no vas a poder loguearte en producción.
   # base_url: https://auth-ia-hub.vercel.app 
