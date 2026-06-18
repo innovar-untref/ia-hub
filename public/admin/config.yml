@@ -1,1 +1,53 @@
+# 1. Configuración del Repositorio
+backend:
+  name: github
+  repo: innovar-untref/ia-hub
+  branch: main
+  # IMPORTANTE: Descomentá la línea de abajo y poné la URL de tu microservicio 
+  # cuando hagas el Paso 4 (el puente OAuth en Vercel). Si no lo hacés, no vas a poder loguearte en producción.
+  # base_url: https://auth-ia-hub.vercel.app 
 
+# Permite probar el CMS en tu máquina (localhost) sin depender de GitHub usando 'npx decap-server'
+local_backend: true
+
+# 2. Identidad Institucional
+logo_url: https://untref.edu.ar/sitio/img/logo_untref.png
+site_url: https://untref.edu.ar
+display_url: https://untref.edu.ar
+
+# 3. Gestión de Archivos Multimedia (Imágenes)
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# 4. Colecciones de Contenido (Tus archivos planos)
+collections:
+  # Colección 1: Proyectos en formato Markdown (.md)
+  - name: "proyectos"
+    label: "Proyectos IA HUB"
+    folder: "content/proyectos"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    fields:
+      - {label: "Título del Proyecto", name: "title", widget: "string"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+      - {label: "Autor/Equipo", name: "author", widget: "string", default: "Equipo de Tecnología Educativa"}
+      - {label: "Imagen Principal", name: "thumbnail", widget: "image", required: false}
+      - {label: "Reflexión Metacognitiva", name: "metacognicion", widget: "text", hint: "Describa brevemente el enfoque pedagógico y el desarrollo del pensamiento crítico de este proyecto."}
+      - {label: "Cuerpo del Artículo", name: "body", widget: "markdown"}
+
+  # Colección 2: Relatorías en formato JSON (.json)
+  - name: "relatorias"
+    label: "Relatorías y Entregas"
+    folder: "content/relatorias"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Título de la Relatoría", name: "title", widget: "string"}
+      - {label: "Fecha de Entrega", name: "date", widget: "datetime"}
+      - {label: "Estado de Revisión", name: "status", widget: "select", options: ["Borrador", "Para Corrección", "Aprobado"]}
+      - {label: "Síntesis", name: "description", widget: "text"}
+      - {label: "Contenido Principal", name: "body", widget: "markdown"}
