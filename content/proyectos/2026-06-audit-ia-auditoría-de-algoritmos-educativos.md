@@ -21,4 +21,4 @@ El proyecto Audit-IA nace como respuesta a la opacidad de los modelos de lenguaj
 
 ### Recursos
 
-Podés acceder a la documentación oficial y al panel de auditoría en el siguiente enlace: [https://innovar-untref.github.io/Audit-IA/](https://www.google.com/search?q=https://innovar-untref.github.io/Audit-IA/)
+Podés acceder a la documentación oficial y al panel de auditoría en el siguiente enlace: <https://innovar-untref.github.io/Audit-IA/>
