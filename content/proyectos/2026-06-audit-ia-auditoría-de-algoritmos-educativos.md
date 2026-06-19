@@ -2,6 +2,7 @@
 title: "Audit-IA: Auditoría de Algoritmos Educativos"
 date: 2026-06-18T21:49:00.000-03:00
 author: Equipo de Tecnología Educativa
+thumbnail: /images/uploads/audit-ia.jpg
 metacognicion: Este proyecto aborda la necesidad crítica de transparencia en los
   sistemas de IA aplicados a la educación. La auditoría no solo mide la
   precisión algorítmica, sino también el sesgo cognitivo y la equidad en el
