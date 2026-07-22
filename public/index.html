@@ -15,6 +15,47 @@
         header h1 { margin: 0; font-size: 2.5rem; }
         header p { font-size: 1.2rem; margin-top: 10px; color: #e0e0e0; }
         
+        /* Estilos del Banner de Presentación Destacado (Estilo Portal UNTREF) */
+        .hero-banner {
+            display: none; /* Se visualiza por JS si está activo */
+            position: relative;
+            max-width: 1100px;
+            height: 420px;
+            margin: 30px auto 0 auto;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 51, 102, 0.95);
+            padding: 25px 30px;
+            color: white;
+            border-top: 4px solid #0099CC;
+        }
+        .hero-title {
+            font-size: 1.8rem;
+            margin: 0 0 10px 0;
+            line-height: 1.3;
+            font-weight: bold;
+        }
+        .hero-link {
+            color: #ffffff;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-block;
+        }
+        .hero-link:hover {
+            color: #0099CC;
+        }
+
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
         .section-title { color: #003366; border-bottom: 2px solid #0099CC; padding-bottom: 10px; margin-bottom: 30px; }
         
@@ -42,6 +83,14 @@
         <h1>Innovar UNTREF | IA HUB</h1>
         <p>Laboratorio de Inteligencia Artificial y Educación 4.0</p>
     </header>
+
+    <!-- Sección del Banner Principal Destacado -->
+    <div id="main-banner" class="hero-banner">
+        <div class="hero-overlay">
+            <h2 id="banner-title" class="hero-title"></h2>
+            <a id="banner-link" href="#" class="hero-link"></a>
+        </div>
+    </div>
     
     <div class="container">
         <h2 class="section-title">Proyectos Activos</h2>
@@ -51,15 +100,63 @@
         <div class="grid" id="proyectos-grid"></div>
     </div>
 
-    <a href="/admin/" class="btn-admin">Acceder al Panel de Edición (CMS)</a>
+    <a href="/public/publico/Administracion/" class="btn-admin">Acceder al Panel de Edición (CMS)</a>
 
     <script>
         // 1. Configuración del origen de datos
         const user = 'innovar-untref';
         const repo = 'ia-hub';
         const folder = 'content/proyectos';
+        const bannerFile = 'content/banner.json';
         
-        // 2. Motor de extracción y renderizado
+        // Inicialización paralela del sitio
+        async function inicializarSitio() {
+            await cargarBannerDestacado();
+            await cargarProyectos();
+        }
+
+        // Recuperación y render dinámico del Banner
+        async function cargarBannerDestacado() {
+            const bannerContainer = document.getElementById('main-banner');
+            const titleElem = document.getElementById('banner-title');
+            const linkElem = document.getElementById('banner-link');
+
+            try {
+                const response = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${bannerFile}`);
+                if (!response.ok) return;
+                
+                const bannerData = await response.json();
+
+                if (bannerData.active) {
+                    titleElem.innerText = bannerData.title || '';
+                    
+                    if (bannerData.image) {
+                        // En caso de guardar rutas relativas con prefijo public, lo limpiamos para el navegador
+                        let imgUrl = bannerData.image;
+                        if (imgUrl.startsWith('public/')) {
+                            imgUrl = imgUrl.replace('public/', '/');
+                        }
+                        bannerContainer.style.backgroundImage = `url('${imgUrl}')`;
+                    } else {
+                        bannerContainer.style.backgroundColor = '#003366';
+                    }
+
+                    if (bannerData.link) {
+                        linkElem.href = bannerData.link;
+                        linkElem.innerText = bannerData.link_text || 'Ver más';
+                        linkElem.style.display = 'inline-block';
+                    } else {
+                        linkElem.style.display = 'none';
+                    }
+
+                    bannerContainer.style.display = 'block';
+                }
+            } catch (e) {
+                console.error("Error al procesar el banner principal:", e);
+            }
+        }
+
+        // 2. Motor de extracción y renderizado de proyectos
         async function cargarProyectos() {
             const grid = document.getElementById('proyectos-grid');
             const loading = document.getElementById('loading');
@@ -104,7 +201,10 @@
                 year: 'numeric', month: 'long', day: 'numeric'
             });
             
-            const imagenUrl = datos.thumbnail ? datos.thumbnail : 'https://untref.edu.ar/sitio/img/logo_untref.png';
+            let imagenUrl = datos.thumbnail ? datos.thumbnail : 'https://untref.edu.ar/sitio/img/logo_untref.png';
+            if (imagenUrl.startsWith('public/')) {
+                imagenUrl = imagenUrl.replace('public/', '/');
+            }
             
             let resumen = datos.metacognicion ? datos.metacognicion : 'Sin reflexión metacognitiva asignada.';
             if (resumen.length > 150) resumen = resumen.substring(0, 150) + '...';
@@ -128,7 +228,8 @@
             contenedor.appendChild(card);
         }
 
-        cargarProyectos();
+        // Ejecutar inicialización completa
+        inicializarSitio();
     </script>
 </body>
 </html>
