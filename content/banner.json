@@ -11,6 +11,13 @@
     {
       "type": "imagen",
       "link_text": "Ver más",
+      "title": "Proyecto SICU - Sistema de Inscripción a Cursos y Tutoría IA",
+      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-proyecto-sicu-sistema-de-inscripci%C3%B3n-a-cursos-y-tutor%C3%ADa-ia.md",
+      "image": "public/images/uploads/sicu.jpg"
+    },
+    {
+      "type": "imagen",
+      "link_text": "Ver más",
       "title": "Audit-IA: Auditoría de Algoritmos Educativos",
       "image": "public/images/uploads/audit-ia.jpg",
       "youtube_id": "plVnMwpwdTAhaIBB"
@@ -27,12 +34,6 @@
       "youtube_id": "dQw4w9WgXcQ",
       "link": "https://untref.edu.ar",
       "link_text": "Visitar Canal"
-    },
-    {
-      "type": "imagen",
-      "link_text": "Ver más",
-      "title": "Proyecto SICU - Sistema de Inscripción a Cursos y Tutoría IA",
-      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-proyecto-sicu-sistema-de-inscripci%C3%B3n-a-cursos-y-tutor%C3%ADa-ia.md"
     }
   ]
 }
