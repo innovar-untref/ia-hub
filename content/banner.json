@@ -1,6 +1,19 @@
 {
   "active": true,
-  "title": "Hacia un Modelo Tecno-Pedagógico Soberano",
-  "link_text": "A través del trabajo sostenido del Equipo de Investigación en Tecnología Educativa (EITE) y mediante el constructo Innovar UNTREF (Pizzichini, 2022), abordamos la Inteligencia Artificial (IA) como un eje transformador que redefine nuestros modelos pedagógicos, curriculares y tecnológicos",
-  "image": "/images/uploads/ia-innovar-untref.jpg"
+  "slides": [
+    {
+      "type": "imagen",
+      "title": "Vacaciones de invierno gratis: MUNTREF invita a disfrutar del arte en familia",
+      "image": "/images/uploads/logo_untref.png",
+      "link": "https://untref.edu.ar",
+      "link_text": "Ver más"
+    },
+    {
+      "type": "youtube",
+      "title": "Conocé el Laboratorio de Innovación Tecnológica Educativa de la UNTREF",
+      "youtube_id": "dQw4w9WgXcQ",
+      "link": "https://untref.edu.ar",
+      "link_text": "Visitar Canal"
+    }
+  ]
 }
