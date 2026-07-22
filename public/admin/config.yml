@@ -45,7 +45,7 @@ collections:
                 options: ["imagen", "youtube"]
                 default: "imagen"
               - {label: "Título / Copete Informativo", name: "title", widget: "string"}
-              - {label: "Imagen de Fondo", name: "image", widget: "image", required: false, hint: "Obligatorio solo si seleccionó tipo imagen"}
+              - {label: "Imagen de Fondo (Ruta o URL)", name: "image", widget: "string", required: false, hint: "Pega una URL externa completa o la ruta local de tu archivo multimedia"}
               - {label: "ID de Video de YouTube", name: "youtube_id", widget: "string", required: false, hint: "Ej del ID: dQw4w9WgXcQ (Código que figura tras el v= en la URL)"}
               - {label: "Enlace del Botón (URL)", name: "link", widget: "string", required: false}
               - {label: "Texto del Enlace", name: "link_text", widget: "string", default: "Ver más", required: false}
