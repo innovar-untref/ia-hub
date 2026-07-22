@@ -33,7 +33,7 @@ collections:
         label: "Carrusel Interactivo Principal"
         file: "content/banner.json"
         fields:
-          - {label: "Activar Carrusel en Home", name: "active", widget: "boolean", default: true}
+          - {label: "Activar Carrusel en Home", widget: "boolean", name: "active", default: true}
           - label: "Elementos del Carrusel"
             name: "slides"
             widget: "list"
@@ -45,8 +45,8 @@ collections:
                 options: ["imagen", "youtube"]
                 default: "imagen"
               - {label: "Título / Copete Informativo", name: "title", widget: "string"}
-              - {label: "Imagen de Fondo", name: "image", widget: "image", required: false, hint: "Solo si seleccionó tipo imagen"}
-              - {label: "ID de Video de YouTube", name: "youtube_id", widget: "string", required: false, hint: "Ej del ID: dQw4w9WgXcQ (Código que figura tras el v=)"}
+              - {label: "Imagen de Fondo", name: "image", widget: "image", required: false, hint: "Obligatorio solo si seleccionó tipo imagen"}
+              - {label: "ID de Video de YouTube", name: "youtube_id", widget: "string", required: false, hint: "Ej del ID: dQw4w9WgXcQ (Código que figura tras el v= en la URL)"}
               - {label: "Enlace del Botón (URL)", name: "link", widget: "string", required: false}
               - {label: "Texto del Enlace", name: "link_text", widget: "string", default: "Ver más", required: false}
 
