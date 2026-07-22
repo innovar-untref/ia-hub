@@ -22,7 +22,7 @@ public_folder: "/images/uploads"
 
 # 4. Colecciones de Contenido (Tus archivos planos)
 collections:
-  # Colección 1: Banner/Carrusel Interactivo Transversal (Archivo Único)
+  # Colección 1: Banner/Carrusel Interactivo Transversal (Archivo Único JSON)
   - name: "configuraciones"
     label: "Configuraciones Globales"
     delete: false
