@@ -199,8 +199,11 @@
             await cargarProyectos();
         }
 
+        let isSliderLoaded = false;
+
         // Motor del Carrusel Interactivo Dinámico
         async function cargarCarruselInteractivo() {
+            if (isSliderLoaded) return; // Evitar recargar si ya está cargado
             const wrapper = document.getElementById('slider-wrapper');
             const container = document.getElementById('slider-container');
 
@@ -221,6 +224,7 @@
                         item.id = `slide-${index}`;
 
                         if (slide.type === 'youtube' && slide.youtube_id) {
+                            item.setAttribute('data-youtube-id', slide.youtube_id);
                             const thumbnailUrl = `https://img.youtube.com/vi/${slide.youtube_id}/maxresdefault.jpg`;
                             item.style.backgroundImage = `url('${thumbnailUrl}')`;
                             
@@ -229,9 +233,9 @@
                             playButton.innerHTML = '<div class="play-icon"></div>';
                             
                             item.appendChild(playButton);
-                            item.onclick = function() {
+                            
+                            const setupVideo = function() {
                                 playButton.style.display = 'none';
-                                item.style.backgroundImage = 'none';
                                 
                                 const videoContainer = document.createElement('div');
                                 videoContainer.className = 'slide-video-container';
@@ -239,6 +243,7 @@
                                 item.appendChild(videoContainer);
                                 item.onclick = null;
                             };
+                            item.onclick = setupVideo;
                         } else if (slide.type === 'imagen' && slide.image) {
                             let imgUrl = slide.image;
                             if (!imgUrl.startsWith('http')) {
@@ -271,6 +276,7 @@
                     });
 
                     wrapper.style.display = 'block';
+                    isSliderLoaded = true;
                     actualizarPosicionSlider();
                 }
             } catch (e) {
@@ -281,13 +287,32 @@
         function cambiarSlide(direccion) {
             if (totalSlides === 0) return;
             
+            // Limpiar videos activos para detener la reproducción y restaurar el botón de play
             const activeIframes = document.querySelectorAll('.slide-video-container');
-            activeIframes.forEach(el => el.remove());
-            
-            cargarCarruselInteractivo().then(() => {
-                currentSlideIndex = (currentSlideIndex + direccion + totalSlides) % totalSlides;
-                actualizarPosicionSlider();
+            activeIframes.forEach(el => {
+                const item = el.parentElement;
+                el.remove();
+                
+                const playButton = item.querySelector('.play-button-overlay');
+                if (playButton) {
+                    playButton.style.display = 'flex';
+                }
+                
+                const yid = item.getAttribute('data-youtube-id');
+                if (yid) {
+                    item.onclick = function() {
+                        if (playButton) playButton.style.display = 'none';
+                        const videoContainer = document.createElement('div');
+                        videoContainer.className = 'slide-video-container';
+                        videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${yid}?autoplay=1&enablejsapi=1&rel=0" allow="autoplay" allowfullscreen></iframe>`;
+                        item.appendChild(videoContainer);
+                        item.onclick = null;
+                    };
+                }
             });
+            
+            currentSlideIndex = (currentSlideIndex + direccion + totalSlides) % totalSlides;
+            actualizarPosicionSlider();
         }
 
         function actualizarPosicionSlider() {
