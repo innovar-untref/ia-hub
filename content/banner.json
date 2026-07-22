@@ -2,14 +2,6 @@
   "active": true,
   "slides": [
     {
-      "type": "youtube",
-      "link_text": "Ver más",
-      "title": "Python: El Motor de la Inteligencia Artificial",
-      "youtube_id": "GISnW9zmn-IWafqA",
-      "link": "https://www.youtube.com/watch?v=WEgH044tkJ4",
-      "image": ""
-    },
-    {
       "type": "imagen",
       "title": "Vacaciones de invierno gratis: MUNTREF invita a disfrutar del arte en familia",
       "image": "/images/uploads/logo_untref.png",
