@@ -22,7 +22,7 @@ public_folder: "/images/uploads"
 
 # 4. Colecciones de Contenido (Tus archivos planos)
 collections:
-  # Colección 1: Banner de Presentación Destacado (Archivo Único)
+  # Colección 1: Banner/Carrusel Interactivo Transversal (Archivo Único)
   - name: "configuraciones"
     label: "Configuraciones Globales"
     delete: false
@@ -30,14 +30,25 @@ collections:
       preview: false
     files:
       - name: "banner"
-        label: "Banner de Presentación Principal"
+        label: "Carrusel Interactivo Principal"
         file: "content/banner.json"
         fields:
-          - {label: "Activar Banner en Home", name: "active", widget: "boolean", default: true}
-          - {label: "Título del Banner", name: "title", widget: "string", hint: "Ej: Vacaciones de invierno gratis: MUNTREF..."}
-          - {label: "Enlace del Botón (URL)", name: "link", widget: "string", required: false}
-          - {label: "Texto del Enlace", name: "link_text", widget: "string", default: "Ver más", required: false}
-          - {label: "Imagen de Fondo", name: "image", widget: "image", required: false}
+          - {label: "Activar Carrusel en Home", name: "active", widget: "boolean", default: true}
+          - label: "Elementos del Carrusel"
+            name: "slides"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.type}})"
+            fields:
+              - label: "Tipo de Elemento"
+                name: "type"
+                widget: "select"
+                options: ["imagen", "youtube"]
+                default: "imagen"
+              - {label: "Título / Copete Informativo", name: "title", widget: "string"}
+              - {label: "Imagen de Fondo", name: "image", widget: "image", required: false, hint: "Solo si seleccionó tipo imagen"}
+              - {label: "ID de Video de YouTube", name: "youtube_id", widget: "string", required: false, hint: "Ej del ID: dQw4w9WgXcQ (Código que figura tras el v=)"}
+              - {label: "Enlace del Botón (URL)", name: "link", widget: "string", required: false}
+              - {label: "Texto del Enlace", name: "link_text", widget: "string", default: "Ver más", required: false}
 
   # Colección 2: Proyectos en formato Markdown (.md)
   - name: "proyectos"
