@@ -3,7 +3,7 @@ title: La Biblioteca de Prompts UNTREF
 date: 2026-01-28T22:02:00.000-03:00
 author: Equipo de Tecnología Educativa
 thumbnail: /images/uploads/borges.jpg
-youtube_video: https://youtu.be/-qQ_q0_l2hg?si=O5H_ypdhcjasjjQx
+youtube_video: O5H_ypdhcjasjjQx
 metacognicion: Este proyecto surge de la necesidad de sistematizar la
   experimentación docente en IA. La construcción de esta biblioteca no es solo
   un fin técnico, sino un proceso de aprendizaje compartido donde el 'prompting'
