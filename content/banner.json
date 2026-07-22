@@ -14,6 +14,12 @@
       "youtube_id": "dQw4w9WgXcQ",
       "link": "https://untref.edu.ar",
       "link_text": "Visitar Canal"
+    },
+    {
+      "type": "youtube",
+      "link_text": "Ver más",
+      "title": "Python: El Motor de la Inteligencia Artificial",
+      "youtube_id": "WEgH044tkJ4"
     }
   ]
 }
