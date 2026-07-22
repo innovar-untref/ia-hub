@@ -21,6 +21,12 @@
       "youtube_id": "dQw4w9WgXcQ",
       "link": "https://untref.edu.ar",
       "link_text": "Visitar Canal"
+    },
+    {
+      "type": "youtube",
+      "link_text": "Ver más",
+      "title": "PRUEBA 2",
+      "youtube_id": "-qQ_q0_l2hg"
     }
   ]
 }
