@@ -67,24 +67,12 @@
                 // Para evitar cachés fuertes
                 const cacheBuster = new Date().getTime();
                 
-                // Primero intentamos buscarlo relativo (por si está desplegado en Vercel/Pages)
-                // Si falla o no está desplegado, usamos la API de GitHub
-                let mdContent = '';
-                try {
-                    const localResponse = await fetch(`../content/proyectos/${fileName}?t=${cacheBuster}`);
-                    if (localResponse.ok) {
-                        mdContent = await localResponse.text();
-                    } else {
-                        throw new Error('Local fallback failed');
-                    }
-                } catch(e) {
-                    // Descargar el archivo específico desde GitHub con API de contents para saltar caché
-                    const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}/${fileName}?t=${cacheBuster}`);
-                    if (!response.ok) throw new Error('No se pudo encontrar el archivo en el repositorio.');
-                    const dataObj = await response.json();
-                    // Decodificar Base64 tratando caracteres especiales correctamente
-                    mdContent = decodeURIComponent(escape(atob(dataObj.content)));
+                // Fetch desde la ruta estática compilada
+                const localResponse = await fetch(`/content/proyectos/${fileName}?t=${cacheBuster}`);
+                if (!localResponse.ok) {
+                    throw new Error('No se pudo encontrar el archivo del proyecto.');
                 }
+                const mdContent = await localResponse.text();
                 
                 // 4. Separar los Metadatos (YAML) del Cuerpo del texto (Markdown)
                 const yamlMatch = mdContent.match(/^---\n([\s\S]*?)\n---/);
