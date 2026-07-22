@@ -209,12 +209,27 @@
 
             try {
                 const cacheBuster = new Date().getTime();
-                const response = await fetch(`https://raw.githubusercontent.com/${user}/${repo}/main/${bannerFile}?t=${cacheBuster}`);
-                if (!response.ok) return;
                 
-                const data = await response.json();
+                let data = null;
+                try {
+                    const localResponse = await fetch(`../content/banner.json?t=${cacheBuster}`);
+                    if (localResponse.ok) {
+                        data = await localResponse.json();
+                    } else {
+                        throw new Error("Local banner.json not found");
+                    }
+                } catch(e) {
+                    // Fallback a GitHub API para saltar la caché de raw
+                    const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${bannerFile}?t=${cacheBuster}`);
+                    if (response.ok) {
+                        const dataObj = await response.json();
+                        data = JSON.parse(decodeURIComponent(escape(atob(dataObj.content))));
+                    } else {
+                        return;
+                    }
+                }
 
-                if (data.active && data.slides && data.slides.length > 0) {
+                if (data && data.active && data.slides && data.slides.length > 0) {
                     totalSlides = data.slides.length;
                     container.innerHTML = '';
 
@@ -320,25 +335,45 @@
             container.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
-        // 2. Motor de extracción original corregido con Cache Buster y Orden Cronológico
+        // 2. Motor de extracción mejorado sin caché de raw
         async function cargarProyectos() {
             const grid = document.getElementById('proyectos-grid');
             const loading = document.getElementById('loading');
             
             try {
                 const cacheBuster = new Date().getTime();
-                const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}?t=${cacheBuster}`);
-                if (!response.ok) throw new Error('No se pudo acceder al repositorio.');
+                let archivos = [];
+                let uselocal = false;
+
+                try {
+                    // Solo para saber si estamos en un entorno donde podríamos leer el dir localmente,
+                    // como en esta arquitectura es frontend-only, fallaremos aquí y usaremos la API
+                    throw new Error("Local directory listing not possible in pure JS without server");
+                } catch(e) {
+                    const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/${folder}?t=${cacheBuster}`);
+                    if (!response.ok) throw new Error('No se pudo acceder al repositorio.');
+                    archivos = await response.json();
+                }
                 
-                const archivos = await response.json();
                 grid.innerHTML = ''; 
-                
                 const listaProyectos = [];
                 
                 for (const archivo of archivos) {
                     if (archivo.name.endsWith('.md')) {
-                        const mdResponse = await fetch(`${archivo.download_url}?t=${cacheBuster}`);
-                        const mdContent = await mdResponse.text();
+                        let mdContent = '';
+                        try {
+                            const localResponse = await fetch(`../content/proyectos/${archivo.name}?t=${cacheBuster}`);
+                            if (localResponse.ok) {
+                                mdContent = await localResponse.text();
+                            } else {
+                                throw new Error('Local fallback failed');
+                            }
+                        } catch(e) {
+                            // Usar la API de contents que viene en archivo.url para saltar la caché de raw
+                            const fileRes = await fetch(archivo.url + `&t=${cacheBuster}`); // archivo.url ya tiene la url de la api
+                            const fileData = await fileRes.json();
+                            mdContent = decodeURIComponent(escape(atob(fileData.content)));
+                        }
                         
                         const yamlMatch = mdContent.match(/^---\n([\s\S]*?)\n---/);
                         if (yamlMatch) {
@@ -371,7 +406,7 @@
             }
         }
 
-        // 3. Función constructora original de tarjetas estáticas
+        // 3. Función constructora original de tarjetas estáticas (Mejorada)
         function renderizarTarjeta(datos, contenedor, nombreArchivo) {
             const fechaFormateada = datos.date ? new Date(datos.date).toLocaleDateString('es-AR', {
                 year: 'numeric', month: 'long', day: 'numeric'
@@ -382,19 +417,27 @@
             let resumen = datos.metacognicion ? datos.metacognicion : 'Sin reflexión metacognitiva asignada.';
             if (resumen.length > 150) resumen = resumen.substring(0, 150) + '...';
 
+            const hasVideo = datos.youtube_video ? '<span style="background:#cc0000; color:white; font-size:0.75rem; padding: 3px 8px; border-radius:12px; margin-left:10px; font-weight:bold;">▶ Video</span>' : '';
+            const hasLink = datos.direct_link ? '<span style="background:#003366; color:white; font-size:0.75rem; padding: 3px 8px; border-radius:12px; margin-left:5px; font-weight:bold;">🔗 Link</span>' : '';
+
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
                 <img src="${imagenUrl}" alt="Portada de ${datos.title}" class="card-img" onerror="this.src='https://untref.edu.ar/sitio/img/logo_untref.png'">
                 <div class="card-content">
                     <h3 class="card-title">${datos.title}</h3>
-                    <div class="card-meta">
-                        <strong>${datos.author}</strong><br>${fechaFormateada}
+                    <div class="card-meta" style="display:flex; align-items:center; flex-wrap:wrap;">
+                        <strong>${datos.author}</strong>&nbsp;|&nbsp;${fechaFormateada}
+                        ${hasVideo}
+                        ${hasLink}
                     </div>
                     <div class="card-desc">
                         "${resumen}"
                     </div>
-                    <a href="/proyecto.html?file=${nombreArchivo}" class="btn-leer">Ver Proyecto</a>
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <a href="/proyecto.html?file=${nombreArchivo}" class="btn-leer">Ver Proyecto</a>
+                        ${datos.direct_link ? `<a href="${datos.direct_link}" target="_blank" rel="noopener" class="btn-leer" style="background-color: #333;" title="Ir al vínculo directo">🔗</a>` : ''}
+                    </div>
                 </div>
             `;
             

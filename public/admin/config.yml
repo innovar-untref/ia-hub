@@ -63,6 +63,8 @@ collections:
       - {label: "Fecha", name: "date", widget: "datetime"}
       - {label: "Autor/Equipo", name: "author", widget: "string", default: "Equipo de Tecnología Educativa"}
       - {label: "Imagen Principal", name: "thumbnail", widget: "image", required: false}
+      - {label: "Video de YouTube Embebido", name: "youtube_video", widget: "string", required: false, hint: "Ingresa el ID del video o la URL completa de YouTube (Ej: https://www.youtube.com/watch?v=dQw4w9WgXcQ)"}
+      - {label: "Vínculo Directo Externo", name: "direct_link", widget: "string", required: false, hint: "URL para redirigir a los usuarios para más información"}
       - {label: "Reflexión Metacognitiva", name: "metacognicion", widget: "text", hint: "Describa brevemente el enfoque pedagógico y el desarrollo del pensamiento crítico de este proyecto."}
       - {label: "Cuerpo del Artículo", name: "body", widget: "markdown"}
 
