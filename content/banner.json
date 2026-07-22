@@ -2,11 +2,11 @@
   "active": true,
   "slides": [
     {
-      "type": "youtube",
+      "type": "imagen",
       "link_text": "Ver más",
       "title": "Audit-IA: Auditoría de Algoritmos Educativos",
       "image": "public/images/uploads/audit-ia.jpg",
-      "youtube_id": "4f9HS8K_bYF_Sq5r"
+      "youtube_id": "plVnMwpwdTAhaIBB"
     },
     {
       "type": "imagen",
