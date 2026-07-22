@@ -244,8 +244,11 @@
                             };
                         } else if (slide.type === 'imagen' && slide.image) {
                             let imgUrl = slide.image;
-                            if (imgUrl.startsWith('public/')) {
-                                imgUrl = imgUrl.replace('public/', '/');
+                            // Soporte Inteligente Híbrido: Si no empieza con http, la tratamos como ruta interna
+                            if (!imgUrl.startsWith('http')) {
+                                if (imgUrl.startsWith('public/')) {
+                                    imgUrl = imgUrl.replace('public/', '/');
+                                }
                             }
                             item.style.backgroundImage = `url('${imgUrl}')`;
                         }
