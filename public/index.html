@@ -263,7 +263,7 @@
                             let imgUrl = slide.image;
                             if (!imgUrl.startsWith('http')) {
                                 if (imgUrl.startsWith('public/')) {
-                                    imgUrl = imgUrl.replace('public/', '/');
+                                    imgUrl = imgUrl.replace('public/', ''); // Remove public/ to make it relative to index.html
                                 }
                             }
                             item.style.backgroundImage = `url('${imgUrl}')`;
