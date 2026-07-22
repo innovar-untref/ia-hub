@@ -10,10 +10,81 @@
     
     <style>
         /* Diseño Institucional UNTREF */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
         header { background-color: #003366; color: white; padding: 2rem; text-align: center; border-bottom: 5px solid #0099CC; }
+        header .header-titles { margin-top: 20px; }
         header h1 { margin: 0; font-size: 2.5rem; }
         header p { font-size: 1.2rem; margin-top: 10px; color: #e0e0e0; }
+
+        /* Estilos de Logos UNTREF */
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .untref-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: white;
+            text-align: left;
+            line-height: 1.1;
+        }
+        .untref-logo .logo-title {
+            font-size: 1.4rem;
+            font-family: 'Georgia', serif;
+            font-weight: normal;
+        }
+        .untref-logo .logo-untref {
+            font-size: 1.6rem;
+            font-family: 'Arial', sans-serif;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .untref-logo.small .logo-title {
+            font-size: 1.1rem;
+        }
+        .untref-logo.small .logo-untref {
+            font-size: 1.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: white;
+            padding: 3rem 2rem 1.5rem 2rem;
+            margin-top: auto;
+            border-top: 5px solid #0099CC;
+        }
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px 50px;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .footer-credits {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 15px;
+            font-size: 0.9rem;
+            color: #b3d4e6;
+        }
+        .footer-credits a {
+            color: #0099CC;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer-credits a:hover {
+            color: #66ccff;
+            text-decoration: underline;
+        }
         
         /* Estilos del Slider/Carrusel Interactivo Superior */
         .slider-wrapper {
@@ -162,8 +233,20 @@
 </head>
 <body>
     <header>
-        <h1>Innovar UNTREF | IA HUB</h1>
-        <p>Laboratorio de Inteligencia Artificial y Educación 4.0</p>
+        <div class="logos-container">
+            <div class="untref-logo">
+                <span class="logo-title">Innovar</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+            <div class="untref-logo small">
+                <span class="logo-title">Equipo de Investigación<br>Tecnología Educativa</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+        </div>
+        <div class="header-titles">
+            <h1>IA HUB</h1>
+            <p>Laboratorio de Inteligencia Artificial y Educación 4.0</p>
+        </div>
     </header>
 
     <!-- Componente del Carrusel Interactivo Superior -->
@@ -182,6 +265,34 @@
     </div>
 
     <a href="/admin/" class="btn-admin">Acceder al Panel de Edición (CMS)</a>
+
+    <footer>
+        <div class="footer-logos">
+            <div class="untref-logo small">
+                <span class="logo-title">Informática</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+            <div class="untref-logo small">
+                <span class="logo-title">Equipo de Investigación<br>Tecnología Educativa</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+            <div class="untref-logo small">
+                <span class="logo-title">Cátedra de Inglés</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+            <div class="untref-logo small">
+                <span class="logo-title">Relaciones Comerciales<br>Internacionales</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+            <div class="untref-logo small">
+                <span class="logo-title">Python</span>
+                <span class="logo-untref">UNTREF</span>
+            </div>
+        </div>
+        <div class="footer-credits">
+            Desarrollado con ♥. Este proyecto es <a href="https://es.wikipedia.org/wiki/Software_libre" target="_blank" rel="noopener noreferrer">Software Libre</a>.
+        </div>
+    </footer>
 
     <script>
         // 1. Configuración del origen de datos nativos exactos

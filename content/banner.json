@@ -3,37 +3,10 @@
   "slides": [
     {
       "type": "imagen",
-      "link_text": "Ver más",
-      "title": "Pronto Prompt: Generador Institucional de Prompts",
-      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-pronto-prompt-generador-institucional-de-prompts.md",
-      "image": "public/images/uploads/pprompt.jpg"
-    },
-    {
-      "type": "imagen",
-      "title": "Python Socrático: Asistente Educativo",
-      "image": "public/images/uploads/python_untref_simulador_rrccii.jpg",
-      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-python-socr%C3%A1tico-asistente-educativo.md",
+      "title": "Vacaciones de invierno gratis: MUNTREF invita a disfrutar del arte en familia",
+      "image": "https://untref.edu.ar/sitio/img/logo_untref.png",
+      "link": "https://untref.edu.ar",
       "link_text": "Ver más"
-    },
-    {
-      "type": "imagen",
-      "link_text": "Ver más",
-      "title": "Proyecto SICU - Sistema de Inscripción a Cursos y Tutoría IA",
-      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-proyecto-sicu-sistema-de-inscripci%C3%B3n-a-cursos-y-tutor%C3%ADa-ia.md",
-      "image": "public/images/uploads/sicu.jpg"
-    },
-    {
-      "type": "imagen",
-      "link_text": "Ver más",
-      "title": "Audit-IA: Auditoría de Algoritmos Educativos",
-      "image": "public/images/uploads/audit-ia.jpg",
-      "youtube_id": "plVnMwpwdTAhaIBB"
-    },
-    {
-      "type": "youtube",
-      "link_text": "Ver más",
-      "title": "Vibe Coding: El Sandbox como Laboratorio de Experimentación",
-      "youtube_id": "J5KvLnjnDV0"
     },
     {
       "type": "youtube",
