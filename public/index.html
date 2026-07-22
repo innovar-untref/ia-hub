@@ -184,7 +184,7 @@
     <a href="/public/publico/Administracion/" class="btn-admin">Acceder al Panel de Edición (CMS)</a>
 
     <script>
-        // Configuración de los orígenes estáticos de datos en Git[cite: 3]
+        // Configuración de los orígenes estáticos de datos en Git
         const user = 'innovar-untref';
         const repo = 'ia-hub';
         const folder = 'content/proyectos';
@@ -244,7 +244,7 @@
                             };
                         } else if (slide.type === 'imagen' && slide.image) {
                             let imgUrl = slide.image;
-                            // Soporte Inteligente Híbrido: Si no empieza con http, la tratamos como ruta interna
+                            // Soporte Inteligente Híbrido para URLs y rutas locales
                             if (!imgUrl.startsWith('http')) {
                                 if (imgUrl.startsWith('public/')) {
                                     imgUrl = imgUrl.replace('public/', '/');
@@ -304,7 +304,7 @@
             container.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
-        // 2. Motor de extracción y ordenamiento en tiempo real de Proyectos (.md)[cite: 3]
+        // 2. Motor de extracción y ordenamiento en tiempo real de Proyectos (.md)
         async function cargarProyectos() {
             const grid = document.getElementById('proyectos-grid');
             const loading = document.getElementById('loading');
@@ -356,7 +356,7 @@
             }
         }
 
-        // 3. Renderizador visual de Tarjetas[cite: 3]
+        // 3. Renderizador visual de Tarjetas
         function renderizarTarjeta(datos, contenedor, nombreArchivo) {
             const fechaFormateada = datos.date ? new Date(datos.date).toLocaleDateString('es-AR', {
                 year: 'numeric', month: 'long', day: 'numeric'
