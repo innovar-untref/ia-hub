@@ -4,7 +4,21 @@
     {
       "type": "imagen",
       "title": "Vacaciones de invierno gratis: MUNTREF invita a disfrutar del arte en familia",
-      "image": "/images/uploads/borges.jpg",
+      "image": "https://untref.edu.ar/sitio/img/logo_untref.png",
+      "link": "https://untref.edu.ar",
+      "link_text": "Ver más"
+    },
+    {
+      "type": "youtube",
+      "title": "Conocé el Laboratorio de Innovación Tecnológica Educativa de la UNTREF",
+      "youtube_id": "dQw4w9WgXcQ",
+      "link": "https://untref.edu.ar",
+      "link_text": "Visitar Canal"
+    }
+        {
+      "type": "imagen",
+      "title": "Vacaciones de invierno gratis: MUNTREF invita a disfrutar del arte en familia",
+      "image": "https://untref.edu.ar/sitio/img/logo_untref.png",
       "link": "https://untref.edu.ar",
       "link_text": "Ver más"
     },
