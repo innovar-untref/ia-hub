@@ -17,16 +17,16 @@
     },
     {
       "type": "youtube",
+      "link_text": "Ver más",
+      "title": "Vibe Coding: El Sandbox como Laboratorio de Experimentación",
+      "youtube_id": "J5KvLnjnDV0"
+    },
+    {
+      "type": "youtube",
       "title": "Conocé el Laboratorio de Innovación Tecnológica Educativa de la UNTREF",
       "youtube_id": "dQw4w9WgXcQ",
       "link": "https://untref.edu.ar",
       "link_text": "Visitar Canal"
-    },
-    {
-      "type": "youtube",
-      "link_text": "Ver más",
-      "title": "Vibe Coding: El Sandbox como Laboratorio de Experimentación",
-      "youtube_id": "J5KvLnjnDV0"
     }
   ]
 }
