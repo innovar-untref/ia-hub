@@ -22,7 +22,24 @@ public_folder: "/images/uploads"
 
 # 4. Colecciones de Contenido (Tus archivos planos)
 collections:
-  # Colección 1: Proyectos en formato Markdown (.md)
+  # Colección 1: Banner de Presentación Destacado (Archivo Único)
+  - name: "configuraciones"
+    label: "Configuraciones Globales"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "banner"
+        label: "Banner de Presentación Principal"
+        file: "content/banner.json"
+        fields:
+          - {label: "Activar Banner en Home", name: "active", widget: "boolean", default: true}
+          - {label: "Título del Banner", name: "title", widget: "string", hint: "Ej: Vacaciones de invierno gratis: MUNTREF..."}
+          - {label: "Enlace del Botón (URL)", name: "link", widget: "string", required: false}
+          - {label: "Texto del Enlace", name: "link_text", widget: "string", default: "Ver más", required: false}
+          - {label: "Imagen de Fondo", name: "image", widget: "image", required: false}
+
+  # Colección 2: Proyectos en formato Markdown (.md)
   - name: "proyectos"
     label: "Proyectos IA HUB"
     folder: "content/proyectos"
@@ -38,7 +55,7 @@ collections:
       - {label: "Reflexión Metacognitiva", name: "metacognicion", widget: "text", hint: "Describa brevemente el enfoque pedagógico y el desarrollo del pensamiento crítico de este proyecto."}
       - {label: "Cuerpo del Artículo", name: "body", widget: "markdown"}
 
-  # Colección 2: Relatorías en formato JSON (.json)
+  # Colección 3: Relatorías en formato JSON (.json)
   - name: "relatorias"
     label: "Relatorías y Entregas"
     folder: "content/relatorias"
