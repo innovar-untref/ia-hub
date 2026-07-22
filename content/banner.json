@@ -2,6 +2,13 @@
   "active": true,
   "slides": [
     {
+      "type": "youtube",
+      "link_text": "Ver más",
+      "title": "Audit-IA: Auditoría de Algoritmos Educativos",
+      "image": "public/images/uploads/audit-ia.jpg",
+      "youtube_id": "4f9HS8K_bYF_Sq5r"
+    },
+    {
       "type": "imagen",
       "title": "Vacaciones de invierno gratis: MUNTREF invita a disfrutar del arte en familia",
       "image": "public/images/uploads/python_untref_simulador_rrccii.jpg",
@@ -14,11 +21,6 @@
       "youtube_id": "dQw4w9WgXcQ",
       "link": "https://untref.edu.ar",
       "link_text": "Visitar Canal"
-    },
-    {
-      "type": "youtube",
-      "link_text": "Ver más",
-      "title": "Audit-IA: Auditoría de Algoritmos Educativos"
     }
   ]
 }
