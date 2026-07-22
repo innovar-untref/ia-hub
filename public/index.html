@@ -141,7 +141,7 @@
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
         .section-title { color: #003366; border-bottom: 2px solid #0099CC; padding-bottom: 10px; margin-bottom: 30px; }
         
-        /* Grilla de Tarjetas de Proyectos */
+        /* Grilla de Tarjetas */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         .card { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease; }
         .card:hover { transform: translateY(-5px); }
@@ -181,10 +181,10 @@
         <div class="grid" id="proyectos-grid"></div>
     </div>
 
-    <a href="/public/publico/Administracion/" class="btn-admin">Acceder al Panel de Edición (CMS)</a>
+    <a href="/admin/" class="btn-admin">Acceder al Panel de Edición (CMS)</a>
 
     <script>
-        // Configuración de los orígenes estáticos de datos en Git
+        // 1. Configuración del origen de datos nativos exactos
         const user = 'innovar-untref';
         const repo = 'ia-hub';
         const folder = 'content/proyectos';
@@ -193,13 +193,13 @@
         let currentSlideIndex = 0;
         let totalSlides = 0;
 
-        // Inicializador unificado de la Portada
+        // Inicializador coordinado de la SPA
         async function inicializarSitio() {
             await cargarCarruselInteractivo();
             await cargarProyectos();
         }
 
-        // 1. Motor del Carrusel Interactivo Global (JSON)
+        // Motor del Carrusel Interactivo Dinámico
         async function cargarCarruselInteractivo() {
             const wrapper = document.getElementById('slider-wrapper');
             const container = document.getElementById('slider-container');
@@ -221,16 +221,13 @@
                         item.id = `slide-${index}`;
 
                         if (slide.type === 'youtube' && slide.youtube_id) {
-                            // Cargar la miniatura oficial de YouTube en alta definición como fondo
                             const thumbnailUrl = `https://img.youtube.com/vi/${slide.youtube_id}/maxresdefault.jpg`;
                             item.style.backgroundImage = `url('${thumbnailUrl}')`;
                             
-                            // Inyectar botón de Play flotante sobre la miniatura
                             const playButton = document.createElement('div');
                             playButton.className = 'play-button-overlay';
                             playButton.innerHTML = '<div class="play-icon"></div>';
                             
-                            // Activar el iFrame interactivo únicamente cuando el usuario hace clic
                             item.appendChild(playButton);
                             item.onclick = function() {
                                 playButton.style.display = 'none';
@@ -240,11 +237,10 @@
                                 videoContainer.className = 'slide-video-container';
                                 videoContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${slide.youtube_id}?autoplay=1&enablejsapi=1&rel=0" allow="autoplay" allowfullscreen></iframe>`;
                                 item.appendChild(videoContainer);
-                                item.onclick = null; // Remover evento para permitir controles nativos del iFrame
+                                item.onclick = null;
                             };
                         } else if (slide.type === 'imagen' && slide.image) {
                             let imgUrl = slide.image;
-                            // Soporte Inteligente Híbrido para URLs y rutas locales
                             if (!imgUrl.startsWith('http')) {
                                 if (imgUrl.startsWith('public/')) {
                                     imgUrl = imgUrl.replace('public/', '/');
@@ -253,7 +249,6 @@
                             item.style.backgroundImage = `url('${imgUrl}')`;
                         }
 
-                        // Capa informativa superpuesta en la base
                         const overlay = document.createElement('div');
                         overlay.className = 'hero-overlay';
                         
@@ -267,8 +262,6 @@
                             link.className = 'hero-link';
                             link.href = slide.link;
                             link.innerText = slide.link_text || 'Ver más';
-                            
-                            // Evitar que el clic en el botón de redirección dispare el reproductor de video
                             link.onclick = function(e) { e.stopPropagation(); };
                             overlay.appendChild(link);
                         }
@@ -288,11 +281,9 @@
         function cambiarSlide(direccion) {
             if (totalSlides === 0) return;
             
-            // Si pasamos de slide, removemos los iFrames activos para pausar reproducciones en segundo plano
             const activeIframes = document.querySelectorAll('.slide-video-container');
             activeIframes.forEach(el => el.remove());
             
-            // Reinicializar el estado visual del slider llamando nuevamente al cargador para restaurar las vistas previas
             cargarCarruselInteractivo().then(() => {
                 currentSlideIndex = (currentSlideIndex + direccion + totalSlides) % totalSlides;
                 actualizarPosicionSlider();
@@ -304,7 +295,7 @@
             container.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
-        // 2. Motor de extracción y ordenamiento en tiempo real de Proyectos (.md)
+        // 2. Motor de extracción original corregido con Cache Buster y Orden Cronológico
         async function cargarProyectos() {
             const grid = document.getElementById('proyectos-grid');
             const loading = document.getElementById('loading');
@@ -336,10 +327,9 @@
                     }
                 }
                 
-                // Ordenamiento cronológico explícito (Más nuevo arriba)
+                // Ordenar: el más nuevo primero
                 listaProyectos.sort((a, b) => b.fechaObjeto - a.fechaObjeto);
                 
-                // Pintar grilla final
                 listaProyectos.forEach(proyecto => {
                     renderizarTarjeta(proyecto.datos, grid, proyecto.archivoName);
                 });
@@ -356,7 +346,7 @@
             }
         }
 
-        // 3. Renderizador visual de Tarjetas
+        // 3. Función constructora original de tarjetas estáticas
         function renderizarTarjeta(datos, contenedor, nombreArchivo) {
             const fechaFormateada = datos.date ? new Date(datos.date).toLocaleDateString('es-AR', {
                 year: 'numeric', month: 'long', day: 'numeric'
@@ -386,7 +376,7 @@
             contenedor.appendChild(card);
         }
 
-        // Inicialización de la SPA
+        // Ejecutar carga unificada
         inicializarSitio();
     </script>
 </body>
