@@ -24,16 +24,23 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
+        }
+        .logo-box {
+            flex: 1;
+            display: flex;
+        }
+        .logo-box.left {
+            justify-content: flex-start;
+        }
+        .logo-box.right {
+            justify-content: flex-end;
         }
         .header-titles { 
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            flex: 2;
             text-align: center;
         }
         .logo-img {
-            height: 70px; /* Ajusta este valor según el tamaño deseado */
+            height: 70px;
             width: auto;
             object-fit: contain;
         }
@@ -44,10 +51,11 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            .logo-box {
+                justify-content: center !important;
+            }
             .header-titles {
-                position: static;
-                transform: none;
-                margin: 20px 0;
+                margin: 0;
             }
             .logo-img {
                 height: 50px;
@@ -237,14 +245,18 @@
 <body>
     <header>
         <div class="logos-container">
-            <img src="images/logos/innovar-untref.png" alt="Logo Innovar UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-box left">
+                <img src="images/logos/innovar-untref.png" alt="Logo Innovar UNTREF" class="logo-img">
+            </div>
             
             <div class="header-titles">
                 <h1>IA HUB</h1>
                 <p>Laboratorio de Inteligencia Artificial y Educación 4.0</p>
             </div>
 
-            <img src="images/logos/eite.png" alt="Logo EITE UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-box right">
+                <img src="images/logos/eite.png" alt="Logo EITE UNTREF" class="logo-img">
+            </div>
         </div>
     </header>
 
@@ -267,11 +279,11 @@
 
     <footer>
         <div class="footer-logos">
-            <img src="images/logos/informatica.png" alt="Informática UNTREF" class="logo-img" onerror="this.style.display='none'">
-            <img src="images/logos/eite.png" alt="EITE UNTREF" class="logo-img" onerror="this.style.display='none'">
-            <img src="images/logos/ingles.png" alt="Cátedra de Inglés UNTREF" class="logo-img" onerror="this.style.display='none'">
-            <img src="images/logos/rrccii.png" alt="Relaciones Comerciales Internacionales UNTREF" class="logo-img" onerror="this.style.display='none'">
-            <img src="images/logos/python.png" alt="Python UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <img src="images/logos/informatica.png" alt="Informática UNTREF" class="logo-img">
+            <img src="images/logos/eite.png" alt="EITE UNTREF" class="logo-img">
+            <img src="images/logos/ingles.png" alt="Cátedra de Inglés UNTREF" class="logo-img">
+            <img src="images/logos/rrccii.png" alt="Relaciones Comerciales Internacionales UNTREF" class="logo-img">
+            <img src="images/logos/python.png" alt="Python UNTREF" class="logo-img">
         </div>
         <div class="footer-credits">
             Desarrollado con ♥. Este proyecto es <a href="https://es.wikipedia.org/wiki/Software_libre" target="_blank" rel="noopener noreferrer">Software Libre</a>.
