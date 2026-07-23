@@ -3,13 +3,6 @@
   "slides": [
     {
       "type": "imagen",
-      "link_text": "Ver más",
-      "title": "Pronto Prompt: Generador Institucional de Prompts",
-      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-pronto-prompt-generador-institucional-de-prompts.md",
-      "image": "public/images/uploads/pprompt.jpg"
-    },
-    {
-      "type": "imagen",
       "title": "Python Socrático: Asistente Educativo",
       "image": "public/images/uploads/python_untref_simulador_rrccii.jpg",
       "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-python-socr%C3%A1tico-asistente-educativo.md",
@@ -41,6 +34,12 @@
       "youtube_id": "dQw4w9WgXcQ",
       "link": "https://untref.edu.ar",
       "link_text": "Visitar Canal"
+    },
+    {
+      "type": "imagen",
+      "link_text": "Ver más",
+      "title": "Pronto Prompt: Generador Institucional de Prompts",
+      "link": "https://ia-hub-innovar.vercel.app/proyecto.html?file=2026-06-pronto-prompt-generador-institucional-de-prompts.md"
     }
   ]
 }
