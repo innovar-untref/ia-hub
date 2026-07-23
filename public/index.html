@@ -99,7 +99,6 @@
         
         /* Estilos del Slider/Carrusel Interactivo Superior */
         .slider-wrapper {
-            display: none; /* Se activa dinámicamente mediante JS */
             position: relative;
             max-width: 1100px;
             height: 450px;
@@ -107,6 +106,11 @@
             overflow: hidden;
             border-radius: 4px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
         }
         .slider-container {
             display: flex;
@@ -262,8 +266,9 @@
 
     <!-- Componente del Carrusel Interactivo Superior -->
     <div id="slider-wrapper" class="slider-wrapper">
-        <button class="slider-arrow arrow-left" onclick="cambiarSlide(-1)">&#10094;</button>
-        <button class="slider-arrow arrow-right" onclick="cambiarSlide(1)">&#10095;</button>
+        <div id="slider-loading">Cargando carrusel interactivo...</div>
+        <button class="slider-arrow arrow-left" onclick="cambiarSlide(-1)" style="display: none;">&#10094;</button>
+        <button class="slider-arrow arrow-right" onclick="cambiarSlide(1)" style="display: none;">&#10095;</button>
         <div id="slider-container" class="slider-container"></div>
     </div>
     
@@ -324,6 +329,9 @@
                 if (data && data.active && data.slides && data.slides.length > 0) {
                     totalSlides = data.slides.length;
                     container.innerHTML = '';
+                    document.getElementById('slider-loading').style.display = 'none';
+                    document.querySelector('.arrow-left').style.display = 'flex';
+                    document.querySelector('.arrow-right').style.display = 'flex';
 
                     data.slides.forEach((slide, index) => {
                         const item = document.createElement('div');
@@ -382,12 +390,14 @@
                         container.appendChild(item);
                     });
 
-                    wrapper.style.display = 'block';
                     isSliderLoaded = true;
                     actualizarPosicionSlider();
+                } else {
+                    document.getElementById('slider-loading').innerText = 'No hay diapositivas activas para mostrar.';
                 }
             } catch (e) {
                 console.error("Error cargando el carrusel interactivo:", e);
+                document.getElementById('slider-loading').innerHTML = `Error cargando el carrusel: No se pudo leer el archivo banner.json (${e.message})`;
             }
         }
 
