@@ -16,39 +16,42 @@
         header h1 { margin: 0; font-size: 2.5rem; }
         header p { font-size: 1.2rem; margin-top: 10px; color: #e0e0e0; }
 
-        /* Estilos de Logos UNTREF */
+        /* Estilos de Logos UNTREF (Imágenes) */
         .logos-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
-        .untref-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            color: white;
-            text-align: left;
-            line-height: 1.1;
+        .header-titles { 
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
         }
-        .untref-logo .logo-title {
-            font-size: 1.4rem;
-            font-family: 'Georgia', serif;
-            font-weight: normal;
+        .logo-img {
+            height: 70px; /* Ajusta este valor según el tamaño deseado */
+            width: auto;
+            object-fit: contain;
         }
-        .untref-logo .logo-untref {
-            font-size: 1.6rem;
-            font-family: 'Arial', sans-serif;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .untref-logo.small .logo-title {
-            font-size: 1.1rem;
-        }
-        .untref-logo.small .logo-untref {
-            font-size: 1.3rem;
+        
+        /* Ajuste responsive para celulares */
+        @media (max-width: 768px) {
+            .logos-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .header-titles {
+                position: static;
+                transform: none;
+                margin: 20px 0;
+            }
+            .logo-img {
+                height: 50px;
+            }
         }
 
         /* Footer */
@@ -234,18 +237,14 @@
 <body>
     <header>
         <div class="logos-container">
-            <div class="untref-logo">
-                <span class="logo-title">Innovar</span>
-                <span class="logo-untref">UNTREF</span>
+            <img src="images/logos/innovar-untref.png" alt="Logo Innovar UNTREF" class="logo-img" onerror="this.style.display='none'">
+            
+            <div class="header-titles">
+                <h1>IA HUB</h1>
+                <p>Laboratorio de Inteligencia Artificial y Educación 4.0</p>
             </div>
-            <div class="untref-logo small">
-                <span class="logo-title">Equipo de Investigación<br>Tecnología Educativa</span>
-                <span class="logo-untref">UNTREF</span>
-            </div>
-        </div>
-        <div class="header-titles">
-            <h1>IA HUB</h1>
-            <p>Laboratorio de Inteligencia Artificial y Educación 4.0</p>
+
+            <img src="images/logos/eite.png" alt="Logo EITE UNTREF" class="logo-img" onerror="this.style.display='none'">
         </div>
     </header>
 
@@ -268,26 +267,11 @@
 
     <footer>
         <div class="footer-logos">
-            <div class="untref-logo small">
-                <span class="logo-title">Informática</span>
-                <span class="logo-untref">UNTREF</span>
-            </div>
-            <div class="untref-logo small">
-                <span class="logo-title">Equipo de Investigación<br>Tecnología Educativa</span>
-                <span class="logo-untref">UNTREF</span>
-            </div>
-            <div class="untref-logo small">
-                <span class="logo-title">Cátedra de Inglés</span>
-                <span class="logo-untref">UNTREF</span>
-            </div>
-            <div class="untref-logo small">
-                <span class="logo-title">Relaciones Comerciales<br>Internacionales</span>
-                <span class="logo-untref">UNTREF</span>
-            </div>
-            <div class="untref-logo small">
-                <span class="logo-title">Python</span>
-                <span class="logo-untref">UNTREF</span>
-            </div>
+            <img src="images/logos/informatica.png" alt="Informática UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <img src="images/logos/eite.png" alt="EITE UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <img src="images/logos/ingles.png" alt="Cátedra de Inglés UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <img src="images/logos/rrccii.png" alt="Relaciones Comerciales Internacionales UNTREF" class="logo-img" onerror="this.style.display='none'">
+            <img src="images/logos/python.png" alt="Python UNTREF" class="logo-img" onerror="this.style.display='none'">
         </div>
         <div class="footer-credits">
             Desarrollado con ♥. Este proyecto es <a href="https://es.wikipedia.org/wiki/Software_libre" target="_blank" rel="noopener noreferrer">Software Libre</a>.
